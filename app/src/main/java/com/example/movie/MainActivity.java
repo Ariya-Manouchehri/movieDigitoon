@@ -18,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+    public static String url;
     ListMovieAPI api;
     Retrofit retrofit;
     RecyclerView recyclerview;
@@ -60,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 listMovieAdapter.setOnItemCLickListener(new ListMovieAdapter.onItemClick() {
                     @Override
                     public void setOnItemClickListener(Search Search) {
-                        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                        intent.putExtra("imdbID",Search.getImdbID());
-                        startActivity(intent);
+                        url = Search.getImdbID();
+                        startActivity(new Intent(MainActivity.this, SecondActivity.class));
                     }
                 });
             }

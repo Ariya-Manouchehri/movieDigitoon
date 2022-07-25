@@ -1,15 +1,13 @@
 package com.example.movie.classes;
 
-import com.example.movie.classes.Ratings;
-
 import java.util.List;
 
 public class DetailMovie {
     String Title, Year, Rated, Released, Runtime, Genre, Director, Writer, Actors, Plot, Language, Country, Awards, Poster;
     List<Ratings> Ratings;
-    String Metascore, imdbRating, imdbVotes, Type, DVD, BoxOffice, Production, Website, Response;
+    String Metascore, imdbRating, imdbVotes,imdbID, Type, DVD, BoxOffice, Production, Website, Response;
 
-    public DetailMovie(String title, String year, String rated, String released, String runtime, String genre, String director, String writer, String actors, String plot, String language, String country, String awards, String poster, List<com.example.movie.classes.Ratings> ratings, String metascore, String imdbRating, String imdbVotes, String type, String DVD, String boxOffice, String production, String website, String response) {
+    public DetailMovie(String title, String year, String rated, String released, String runtime, String genre, String director, String writer, String actors, String plot, String language, String country, String awards, String poster, List<com.example.movie.classes.Ratings> ratings, String metascore, String imdbRating, String imdbVotes, String imdbID, String type, String DVD, String boxOffice, String production, String website, String response) {
         Title = title;
         Year = year;
         Rated = rated;
@@ -28,6 +26,7 @@ public class DetailMovie {
         Metascore = metascore;
         this.imdbRating = imdbRating;
         this.imdbVotes = imdbVotes;
+        this.imdbID = imdbID;
         Type = type;
         this.DVD = DVD;
         BoxOffice = boxOffice;
@@ -178,6 +177,14 @@ public class DetailMovie {
 
     public void setImdbVotes(String imdbVotes) {
         this.imdbVotes = imdbVotes;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
     }
 
     public String getType() {
