@@ -1,4 +1,4 @@
-package com.example.movie;
+package com.example.movie.classes;
 
 public class Search {
     String Title;

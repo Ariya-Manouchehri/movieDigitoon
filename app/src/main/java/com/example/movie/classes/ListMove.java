@@ -1,10 +1,9 @@
-package com.example.movie;
+package com.example.movie.classes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListMove {
-    List<Search> Search;
+    List<com.example.movie.classes.Search> Search;
     String totalResults;
     String Response;
 
@@ -14,11 +13,11 @@ public class ListMove {
         Response = response;
     }
 
-    public List<com.example.movie.Search> getSearch() {
+    public List<com.example.movie.classes.Search> getSearch() {
         return Search;
     }
 
-    public void setSearch(List<com.example.movie.Search> search) {
+    public void setSearch(List<com.example.movie.classes.Search> search) {
         Search = search;
     }
 

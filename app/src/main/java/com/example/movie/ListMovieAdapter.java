@@ -1,7 +1,6 @@
 package com.example.movie;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movie.classes.Search;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,6 +18,8 @@ import java.util.List;
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Holder> {
     List<Search> searches;
     Context context;
+    onItemClick listener;
+
 
     public ListMovieAdapter(List<Search> searches, Context context) {
         this.searches = searches;
@@ -52,7 +54,12 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Hold
             imdbID = itemView.findViewById(R.id.imdbID);
             type = itemView.findViewById(R.id.type);
             poster = itemView.findViewById(R.id.poster);
-
+itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        listener.setOnItemClickListener(searches.get(getAdapterPosition()));
+    }
+});
         }
 
         void fill(Search search) {
@@ -62,5 +69,13 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.Hold
             type.setText(search.getType());
             Picasso.get().load(search.getPoster()).into(poster);
         }
+    }
+
+    interface onItemClick{
+        public void setOnItemClickListener(Search Search);
+    }
+
+    public void setOnItemCLickListener(onItemClick listener){
+        this.listener = listener;
     }
 }

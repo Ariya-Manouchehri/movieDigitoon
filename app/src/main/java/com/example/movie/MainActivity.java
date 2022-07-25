@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.movie.classes.ListMove;
+import com.example.movie.classes.Search;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         api = retrofit.create(ListMovieAPI.class);
 
         getListMovie();
-
     }
 
     private void getListMovie() {
@@ -57,10 +53,18 @@ public class MainActivity extends AppCompatActivity {
                 ListMove listMove = response.body();
                 if (!listMove.getSearch().isEmpty()) {
                     listMovieAdapter = new ListMovieAdapter(listMove.getSearch(), MainActivity.this);
+                    recyclerview.setAdapter(listMovieAdapter);
                 }
-
-                recyclerview.setAdapter(listMovieAdapter);
                 recyclerview.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+                listMovieAdapter.setOnItemCLickListener(new ListMovieAdapter.onItemClick() {
+                    @Override
+                    public void setOnItemClickListener(Search Search) {
+                        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra("imdbID",Search.getImdbID());
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
